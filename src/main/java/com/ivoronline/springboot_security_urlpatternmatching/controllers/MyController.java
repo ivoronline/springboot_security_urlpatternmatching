@@ -15,7 +15,7 @@ public class MyController {
   @ResponseBody @RequestMapping("/endPoint4")          public String ep4()      { return "endPoint4"; }
   @ResponseBody @RequestMapping("/sublevel/endPoint5") public String ep5()      { return "endPoint5"; }
 
-  @GetMapping("/Hello")
+  @RequestMapping("/Hello")
   public String hello() {
     return "Test";
   }
