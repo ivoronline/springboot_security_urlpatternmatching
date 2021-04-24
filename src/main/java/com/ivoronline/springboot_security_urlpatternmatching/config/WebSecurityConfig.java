@@ -44,7 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
       .antMatchers("/*"                  ).hasRole("USER")  //Select Endpoints-this level
       .antMatchers("/cars/*"             ).hasRole("USER")  //Select Endpoints-this level
       .antMatchers("/cars/end*"          ).hasRole("USER")  //Select Endpoints-this level-start with /end
-      .antMatchers("/cars/*", "/planes*" ).hasRole("USER"); //Select Endpoints that match listed URL Patterns
+      .antMatchers("/cars/*", "/bikes*"  ).hasRole("USER"); //Select Endpoints that match listed URL Patterns
 
     //SELECT ENDPOINTS - USING DOUBLE ASTERISK '**'
     httpSecurity.authorizeRequests()
