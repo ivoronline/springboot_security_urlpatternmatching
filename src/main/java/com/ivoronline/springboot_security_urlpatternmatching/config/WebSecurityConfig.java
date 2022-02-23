@@ -15,23 +15,25 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     //SELECT SPECIFIC ENDPOINTS
     httpSecurity.authorizeRequests()
-      .antMatchers("/EndPoint1")              .hasRole("USER")  //Select single  Endpoint
-      .antMatchers("/EndPoint2", "/EndPoint3").hasRole("USER"); //Select multiple Endpoints from the list
+      .antMatchers("/EndPoint1")             .hasRole("USER")   //Select single   Endpoint
+      .antMatchers("/EndPoint2","/EndPoint3").hasRole("USER")   //Select multiple Endpoints from the list
+      .antMatchers("/EndPoint4")             .hasRole("ADMIN");
 
-    //SELECT ENDPOINTS - USING ASTERISK '*'
+    //SELECT ENDPOINTS AT ASTERISK LEVEL
     httpSecurity.authorizeRequests()
-      .antMatchers("/*"                  ).hasRole("USER")      //Select Endpoints-this level
-      .antMatchers("/cars/*"             ).hasRole("USER")      //Select Endpoints-this level
-      .antMatchers("/cars/end*"          ).hasRole("USER")      //Select Endpoints-this level-start with /end
-      .antMatchers("/cars/*", "/bikes*"  ).hasRole("USER");     //Select Endpoints that match listed URL Patterns
+      .antMatchers("/*"              ).hasRole("USER")     //1st level Endpoint
+      .antMatchers("/end*"           ).hasRole("USER")     //1st level Endpoint that starts with /end
+      .antMatchers("/bikes/*"        ).hasRole("USER")     //2nd level Endpoint that starts with /bikes/
+      .antMatchers("/bikes/end*"     ).hasRole("USER")     //2nd level Endpoint that starts with /bikes/end
+      .antMatchers("/end*","/bikes/*").hasRole("USER");    //Endpoint that matches listed URL Patterns
 
-    //SELECT ENDPOINTS - USING DOUBLE ASTERISK '**'
+    //SELECT ENDPOINTS AT ASTERISK LEVEL AND BELOW
     httpSecurity.authorizeRequests()
-      .antMatchers("/**"                 ).hasRole("USER")      //Select Endpoints-any level
-      .antMatchers("/end**"              ).hasRole("USER")      //Select Endpoints-any level-start with /end
-      .antMatchers("/cars/**"            ).hasRole("USER")      //Select Endpoints-any level-start with /cars/
-      .antMatchers("/cars/end**"         ).hasRole("USER")      //Select Endpoints-any level-start with this
-      .antMatchers("/cars/*", "/bikes/**").hasRole("USER");     //Select Endpoints that match listed URL Patterns
+      .antMatchers("/**"               ).hasRole("USER")   //Any level Endpoint
+      .antMatchers("/end**"            ).hasRole("USER")   //Any level Endpoint that starts with /end
+      .antMatchers("/cars/**"          ).hasRole("USER")   //Any level Endpoint that starts with /cars/
+      .antMatchers("/cars/end**"       ).hasRole("USER")   //Any level Endpoint that starts with /cars/end
+      .antMatchers("/end**", "/cars/**").hasRole("USER");  //Endpoint that matches listed URL Patterns
 
     //AUTHENTICATE WITH DEFAULT LOGIN FORM
     httpSecurity.formLogin(); //Without this there is no Login Form to Authenticate
