@@ -12,12 +12,9 @@ public class MyController {
   @RequestMapping("/EndPoint3")          public String ep3() { return "Hello from EndPoint3"; }  //USER
   @RequestMapping("/EndPoint4")          public String ep4() { return "Hello from EndPoint4"; }  //ADMIN
 
-  //NO ROLE ADDED
-  @RequestMapping("/EndPoint5")          public String ep5() { return "Hello from EndPoint5"; }  //Authenticated
-
   //ADDED ROLE USING URL PATTERNS
-  @RequestMapping("/bikes/EndPoint6")    public String ep6() { return "Hello from EndPoint6"; }  //USER
-  @RequestMapping("/cars/bmw/EndPoint7") public String ep7() { return "Hello from EndPoint7"; }  //USER
+  @RequestMapping("/bikes/EndPoint5")    public String ep5() { return "Hello from EndPoint5"; }  //USER
+  @RequestMapping("/cars/bmw/EndPoint6") public String ep6() { return "Hello from EndPoint6"; }  //USER
 
 }
 
